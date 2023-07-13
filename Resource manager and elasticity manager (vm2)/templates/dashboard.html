@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: sans-serif;
+			background-color: #f2f2f2;
+		}
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+			color: #333;
+		}
+		table {
+			border-collapse: collapse;
+			width: 80%;
+			margin: 50px auto;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+			background-color: #fff;
+		}
+		th, td {
+			text-align: left;
+			padding: 12px;
+		}
+		tr {
+			border-bottom: 1px solid #ddd;
+		}
+		th {
+			background-color: #333;
+			color: #fff;
+		}
+		tr:hover {
+			background-color: #f5f5f5;
+		}
+
+
+	</style>
+        <script type="text/javascript">
+            setInterval(function(){
+                location.reload();
+            }, 1000); // refresh every 5 seconds
+        </script>
+
+</head>
+<body >
+	<h1>Light</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>NAME</th>
+				<th>PORT</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for nodes_list in nodes_light %}
+				{% for node in nodes_list %}
+					<tr>
+						<td>{{ node['name'] }}</td>
+						<td>{{ node['port'] }}</td>
+						<td>{{ node['status'] }}</td>
+					</tr>
+				{% endfor %}
+			{% endfor %}
+		</tbody>
+	</table>
+	<h1>Medium</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>NAME</th>
+				<th>PORT</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for nodes_list in nodes_medium %}
+				{% for node in nodes_list %}
+					<tr>
+						<td>{{ node['name'] }}</td>
+						<td>{{ node['port'] }}</td>
+						<td>{{ node['status'] }}</td>
+					</tr>
+				{% endfor %}
+			{% endfor %}
+		</tbody>
+	</table>
+	<h1>Heavy</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>NAME</th>
+				<th>PORT</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for nodes_list in nodes_heavy %}
+				{% for node in nodes_list %}
+					<tr>
+						<td>{{ node['name'] }}</td>
+						<td>{{ node['port'] }}</td>
+						<td>{{ node['status'] }}</td>
+					</tr>
+				{% endfor %}
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<h1>REQUEST TABLE</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>REQUEST</th>
+				<th>SERVER</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for request in request_lists %}
+				<tr>
+					<td>{{ request['request'] }}</td>
+					<td>{{ request['server_name'] }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<h1>Resource usage</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Pod Name</th>
+				<th>CPU %</th>
+				<th>Memory</th>
+			</tr>
+		</thead>
+		<tbody>		
+			<tr>
+				<td>Light pod</td>
+				<td>{{ usage_lights[1] }}</td>
+				<td>{{ usage_lights[2] }}</td>
+			</tr>
+			<tr>
+				<td>medium pod</td>
+				<td>{{ usage_mediums[1] }}</td>
+				<td>{{ usage_mediums[2] }}</td>
+			</tr>
+			<tr>
+				<td>heavy pod</td>
+				<td>{{ usage_heavys[1] }}</td>
+				<td>{{ usage_heavys[2] }}</td>
+			</tr>
+
+		</tbody>
+	</table>
+</body>
+</html>
